@@ -1066,7 +1066,7 @@ class LabelingWidget(LabelDialog):
 
         self.populate_mode_actions()
 
-        self.first_start = True
+        self.first_start = False
         if self.first_start:
             QWhatsThis.enterWhatsThisMode()
 
@@ -1097,7 +1097,7 @@ class LabelingWidget(LabelDialog):
             f"<b>{text_mode}</b> {self.canvas.get_mode()} - <b>{text_shortcuts}</b>"
             f" {text_previous} <b>A</b>, {text_next} <b>D</b>,"
             f" {text_rectangle} <b>R</b>,"
-            f" {text_polygon}: <b>P</b>"
+            f" {text_polygon} <b>P</b>"
         )
 
     @pyqtSlot()
@@ -1237,11 +1237,11 @@ class LabelingWidget(LabelDialog):
         self.actions.undo.setEnabled(self.canvas.is_shape_restorable)
 
     def documentation(self):
-        url = "https://anylabeling.com/"  # NOQA
+        url = "https://anylabeling.nrl.ai/"  # NOQA
         webbrowser.open(url)
 
     def contact(self):
-        url = "https://aicurious.io/contact/"  # NOQA
+        url = "https://www.nrl.ai/contact"  # NOQA
         webbrowser.open(url)
 
     def toggle_drawing_sensitive(self, drawing=True):
@@ -2397,7 +2397,7 @@ class LabelingWidget(LabelDialog):
     def remove_selected_point(self):
         self.canvas.remove_selected_point()
         self.canvas.update()
-        if not self.canvas.h_hape.points:
+        if self.canvas.h_hape is not None and not self.canvas.h_hape.points:
             self.canvas.delete_shape(self.canvas.h_hape)
             self.remove_labels([self.canvas.h_hape])
             self.set_dirty()
@@ -2525,6 +2525,7 @@ class LabelingWidget(LabelDialog):
         extensions = [
             f".{fmt.data().decode().lower()}"
             for fmt in QtGui.QImageReader.supportedImageFormats()
+            if fmt.data().decode().lower() != "svg"
         ]
 
         images = []
