@@ -47,7 +47,7 @@ jobs:
           prerelease: true
 
       - name: Create release url file
-        run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
+        run: echo "${{ needs.release.outputs.upload_url }}" > release_url.txt
 
       - name: Save release url file for publish
         uses: actions/upload-artifact@v4
@@ -112,7 +112,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.get_release_info.outputs.upload_url }}
+          upload_url: ${{ needs.release.outputs.upload_url }}
           asset_path: ./dist/anylabeling
           asset_name: AnyLabeling-${{ runner.os }}
           asset_content_type: application/octet-stream
@@ -124,7 +124,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.get_release_info.outputs.upload_url }}
+          upload_url: ${{ needs.release.outputs.upload_url }}
           asset_path: ./dist/anylabeling.exe
           asset_name: AnyLabeling.exe
           asset_content_type: application/octet-stream
@@ -144,7 +144,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.get_release_info.outputs.upload_url }}
+          upload_url: ${{ needs.release.outputs.upload_url }}
           asset_path: ./dist/AnyLabeling.dmg
           asset_name: AnyLabeling.dmg
           asset_content_type: application/octet-stream
@@ -207,7 +207,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.get_release_info.outputs.upload_url }}
+          upload_url: ${{ needs.release.outputs.upload_url }}
           asset_path: ./dist/anylabeling
           asset_name: AnyLabeling-${{ runner.os }}-GPU
           asset_content_type: application/octet-stream
@@ -239,7 +239,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.get_release_info.outputs.upload_url }}
+          upload_url: ${{ needs.release.outputs.upload_url }}
           asset_path: ./dist/AnyLabeling-GPU.dmg
           asset_name: AnyLabeling-GPU.dmg
           asset_content_type: application/octet-stream
