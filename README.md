@@ -23,7 +23,6 @@
   <img style="width: 800px; margin-left: auto; margin-right: auto; display: block;" alt="AnyLabeling-SegmentAnything" src="https://user-images.githubusercontent.com/18329471/236625792-07f01838-3f69-48b0-a12e-30bad27bd921.gif"/>
 </a>
 
-
 - **Youtube Demo:** [https://www.youtube.com/watch?v=5qVJiYNX5Kk](https://www.youtube.com/watch?v=5qVJiYNX5Kk)
 - **Documentation:** [https://anylabeling.nrl.ai](https://anylabeling.nrl.ai)
 
